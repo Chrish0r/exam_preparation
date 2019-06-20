@@ -24,7 +24,7 @@ char pruefziffer(char* old) {
     for(i = 0; old[i] != '\0'; i++) { // setzte später in main in brackets Wert 10 als Laenge und checke, ob es immer noch geht, oder ob strlen notwendig
         summe += (old[i] - 48);
     }
-    pruefziffer = summe % 11;// ToDo: Sonderfall für Rest = 10 = X einstellen
+    pruefziffer = summe % 11;
     if(pruefziffer == 10) {
         return'X';
     }

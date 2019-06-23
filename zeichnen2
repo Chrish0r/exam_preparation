@@ -1,0 +1,54 @@
+#include <stdio.h>
+// Prototypen
+#define HOECHSTER_BALKEN 20
+
+double hoechster_kurs(double* kurswerte, int length);
+void zeichnen(double* kurse, int laenge);
+
+int main() {
+    double k[] = {120., 150., 80., 14., 110., 65., 99., 180., 140., 55. };
+    zeichnen(k, 10);
+
+    return 0;
+}
+
+double hoechster_kurs(double* kurswerte, int length) {
+    int i;
+    double max = kurswerte[0];
+
+    for(i = 0; i < length; i++) {
+        if(kurswerte[i] > max) {
+            max = kurswerte[i];
+        }
+    }
+      return max;
+}
+
+void zeichnen(double* kurse, int laenge) {
+    int i, s, z;
+    int anzahl_faktor = (int) (hoechster_kurs(kurse, laenge) / HOECHSTER_BALKEN); // typcast nicht noetig, weil Nenner integer ist?
+    //printf("%d\n", anzahl_faktor); // testing
+
+    for(z = HOECHSTER_BALKEN; z > 0; z--) {
+        printf("| ");
+        for(s = 0; s < laenge; s++) {
+            if(z <= (kurse[s] / anzahl_faktor)) {
+                printf("##%*s", 5,"");
+            } else {
+                printf("%*s", 7, "");
+            }
+        }
+        printf("\n");
+    }
+
+    printf("+-"); // oder besser in for und dort Fallunterscheidung (if(i == 0) do.../ else do, until i <= laenge).
+    for(i = 0; i <  laenge; i++) {
+        printf("+------");
+    }
+    printf("\n");
+
+    for(i = 0; i < laenge; i++) {
+        printf(" %05.1lf ", kurse[i]); // Erste null nach Formatbezeicher dafür, dass alle Stellen vor Komma mit Nullen aufgefüült werden sollen - dann Laenge von Zahl (Komma zaehlt als 1 Stelle!) und hinter Punkt, Anzahl der Nachkommastellen.
+    }
+    printf("\n");
+}

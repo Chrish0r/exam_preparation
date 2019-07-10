@@ -1,0 +1,62 @@
+#include <stdio.h>
+
+int mystrlen(char* string) { // Hilfsfunktion zur Bestimmung der string-laenge
+    int laenge = 0;
+
+    while(string[laenge] != '\0') {
+        laenge++;
+    }
+    // printf("Laenge: %d\n", laenge);
+
+    return laenge;
+}
+
+int check_isbn(char* input) {
+    int pos, erg, summe = 0;
+     char pruefziffer;
+
+    if(mystrlen(input) != 13) {
+        return 0;
+    }
+
+    for(pos = 0; pos < (mystrlen(input) - 1); pos++) {
+        if ((pos + 1) % 2 == 0) {
+            summe += (3 * (input[pos]  - '0')); // effektive Umwandlung von char in int
+        } else {
+            summe += (input[pos] - '0');
+        }
+    }
+    printf("summe: %d\n", summe);
+
+    erg = 10 - (summe % 10);
+    // printf("erg: %d\n", erg);
+
+    if(erg == 10) {
+        pruefziffer = '0';
+    } else {
+        pruefziffer = erg  + '0'; // Rückwandlung in char
+    }
+    //  printf("pruefziffer: %c\n", pruefziffer);
+
+    if(pruefziffer == input[(mystrlen(input) - 1)]) { //letzter Index immer (Laenge - 1);
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+int main() {
+
+  //  printf("Eingabe der ISBN-Nummer:");
+    char eingabe[100] = "9763446154973";
+    //scanf("%s", &eingabe);
+
+    if(check_isbn(eingabe))
+        printf("Eingabe OK!\n");
+    else
+        printf("Eingabe nicht OK!\n");
+
+    //system("pause");
+
+    return 0;
+}

@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int mystrlen(char* string) {
+    int laenge = 0;
+
+    while(*string) {                      // praktisch, so lange indexierter Wert >0 bzw. bis es zu '\0' gelangt.
+        *string++;
+        laenge++;
+    }
+
+    return laenge;
+}
+
+int main() {
+
+    char array[] = {'H', 'e', 'l', 'l', 'o', '\0'};
+
+    //char array[] = "Hello";
+
+     printf("Laenge des arrays ist %d\n", mystrlen(array));
+
+    return 0;
+}

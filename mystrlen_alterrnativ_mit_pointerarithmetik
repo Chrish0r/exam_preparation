@@ -4,7 +4,7 @@ int mystrlen(char* string) {
     int laenge = 0;
 
     while(*string) {                      // praktisch, so lange indexierter Wert >0 bzw. bis es zu '\0' gelangt.
-        *string++;
+        string++;                        // Zeiger zeigt auf das nächste Element.
         laenge++;
     }
 

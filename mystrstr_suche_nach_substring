@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int mystrstr(char* haupt, char* teil) {
+    int i, j, is_substring;
+
+    for(i = 0; haupt[i] != '\0'; i++) {
+        is_substring = 1;
+        for(j = 0; teil[j] != '\0'; j++) {
+            if(haupt[i + j] != teil [j]) { //  (i + j) damit wir im Hauptstring weiter nach rechts gehen
+                is_substring = 0;
+                break; //damit es nicht "umsonst weiterirritiert
+            }
+        }
+        if(is_substring == 1) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int main() {
+
+    char string[] = "Barbarano";
+    char substring[] = "ano"; // other testcases: 'arab' und 'anoz'
+
+    if(mystrstr(string, substring)) {
+        printf("True\n");
+    } else {
+        printf("False\n");
+    }
+
+    return 0;
+}

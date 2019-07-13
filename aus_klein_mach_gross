@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+
+void aus_klein_mach_gross(char* s) {
+    int i;
+
+    for(i = 0; s[i] != '\0'; i++) {
+        if(s[i] >= 'a' && s[i] <= 'z') {
+            s[i] = s[i] - ('a' - 'A');      // alternative: - 32
+        }
+    }
+}
+
+int main() {
+
+    char array[] = "Testpruefung";
+
+    aus_klein_mach_gross(array);
+
+    printf("%s\n", array);
+
+    return 0;
+}

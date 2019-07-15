@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int checke_klammern(char *array);
+
+int main() {
+   	printf("%d\n", checke_klammern( "x(y)z" ) );
+   	printf("%d\n", checke_klammern( "(if (zero? x) max (/ 1 x))" ) );
+   	printf("%d\n", checke_klammern( "Programmieren (PG1 (wegen C) besonders) ist super" ) );
+   	printf("%d\n", checke_klammern( "())(" ));
+   	printf("%d\n", checke_klammern( "a)2x-3x((4+7))(a+b)(" ) );
+
+   	return 0;
+}
+
+int checke_klammern(char* array) {
+    int i, anzahl = 0;
+
+    for(i = 0; array[i] != '\0'; i++) {
+        if(array[i] == '(') {
+           anzahl++;
+        }
+        if(array[i] == ')') {
+            anzahl--;
+        }
+        if(anzahl < 0) { //Garantiert, dass der String niemals mit einer geschlossenen Klammer beginnen darf.
+            return 0;
+        }
+
+    }
+    if(anzahl == 0) {
+        return 1;
+    }
+    return 0;
+}

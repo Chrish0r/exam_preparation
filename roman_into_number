@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int into_num(char rom) {
+    switch(rom) { // no 'break' needed, weil ja sofort returned wird, und somit Fkt. wieder velrassen wird. (Code direkt an dieser Stelle abrupt zu Ende)
+    case 'I': return 1;  case 'i': return 1;
+    case 'V': return 5;  case 'v': return 5;
+    case 'X': return 10;  case 'x': return 10;
+    case 'C': return 100; case 'c': return 100;
+    case 'M': return 1000; case 'm': return 1000;
+    }
+    return 0; //wichtig, falls etwas übergeben wird, was obige Faelle nicht umfasst.
+}
+
+void roman_to_numeral(char* rom) { //ein char-array, weleches eine roemische Zahl darstellt wird übergeben}/
+   int i, erg = 0;
+
+   for(i = 0; rom[i] != '\0'; i++) {
+        if(into_num(rom[i]) < into_num(rom[i + 1])) {
+            erg -= into_num(rom[i]);
+        } else {
+            erg += into_num(rom[i]);
+        }
+    }
+    printf("%d\n", erg);
+}
+
+
+int main() {
+
+    roman_to_numeral("MMCM");  // gibt 2900 zurueck: 1000 + 1000 - 100 + 1000
+    roman_to_numeral("XXIV");  // gibt 24 zurueck: 10 + 10 - 1 + 5
+    roman_to_numeral("MMXVI"); // gibt 2016 zurueck: 1000 + 1000 + 10 + 5 + 1
+
+    return 0;
+}

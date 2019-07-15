@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+int mystrlen(char* s) {
+    int laenge = 0;
+    while(s[laenge] != '\0') {
+        laenge++;
+    }
+    return laenge;
+}
+
+void welcome(char* string) {
+    int i;
+    int laenge_gruss = mystrlen("Willkommen");
+    int laenge_string = mystrlen(string);
+
+    if(laenge_string <= laenge_gruss) { // diesen "code-snippet dann auch für die letzte Zeile verwenden
+        for(i = 0; i < (laenge_gruss + 2); i++) {
+            printf("*");
+        }
+        printf("\n");
+
+        printf("*%*s*\n", (-1) * laenge_gruss, "Herzlich");
+        printf("*%*s*\n", laenge_gruss, "Willkommen");
+
+        for(i = 0; i < laenge_string; i++) {
+            printf("*%*s%*c*\n", i, "", (-laenge_gruss) + i, string[i]); //falls linksbuendig, muss man i hinzuaddieren, wenn man Laenge verkürzen will - siehe Arithmetik
+        }
+
+        for(i = 0; i < (laenge_gruss + 2); i++) {
+            printf("*");
+        }
+    }
+
+    if(laenge_string > laenge_gruss) {
+        for(i = 0; i < (laenge_string + 2); i++) {
+            printf("*");
+        }
+        printf("\n");
+
+    printf("*");
+    printf("%*s", -laenge_string, "Herzlich");
+    printf("*\n");
+    printf("*");
+    printf("%*s", -laenge_string, "Willkommen");
+    printf("*\n");
+
+    for(i = 0; i < laenge_string; i++) {
+        printf("*");
+        printf("%*s", i, "");
+        printf("%*c", -laenge_string + i, string[i]);
+        printf("*\n");
+    }
+     for(i = 0; i < (laenge_string + 2); i++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+}
+
+
+int main() {
+    welcome("Christopherus");
+  //welcome("Anna");
+   // welcome("Thomas");
+   // welcome("Willkommen");
+
+    return 0;
+}

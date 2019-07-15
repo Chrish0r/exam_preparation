@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+typedef struct Bruch {
+    int zaehler, nenner;
+} Bruch;
+
+Bruch dividiere(Bruch b1, Bruch b2) {
+    Bruch b;
+
+    b.zaehler = b1.zaehler * b2.nenner;
+    b.nenner = b1.nenner * b2.zaehler;
+
+    return b;
+}
+
+
+
+int main() {
+	Bruch b1 = {17, 3}, b2 = {9, 8};
+	Bruch ergebnis;
+
+	ergebnis = dividiere(b1, b2);
+	printf("%d/%d\n", ergebnis.zaehler, ergebnis.nenner  // koennte man noch mit gT-ALG kuerzen, indem man Zaehler und Nenner, jeweils durch ermittelten ggT dividiert.
+
+
+
+	return 0;
+}
